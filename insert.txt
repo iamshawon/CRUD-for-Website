@@ -1,0 +1,23 @@
+ string connectionString = "Server = .\\SQLEXPRESS; Database = Personal_library; Integrated Security = True";
+        SqlConnection conn = new SqlConnection(connectionString);
+        conn.Open();
+
+        string b_id = bookid_txb.Text;
+        string b_name = bookname_txb.Text;
+        string a_name = authorname_txb.Text;
+        string br_price = borrowprice_txb.Text;
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "INSERT INTO book_info(book_id,book_name,author_name,borrow_price) VALUES ('" + b_id + "','" + b_name + "','" + a_name + "','" + br_price + "')  ";
+        cmd.Connection = conn;
+
+        cmd.ExecuteNonQuery();
+
+        Response.Write("New Book Inserted!");
+
+        bookid_txb.Text = "";
+        bookname_txb.Text = "";
+        authorname_txb.Text = "";
+        borrowprice_txb.Text = "";
+
+        conn.Close();

@@ -1,0 +1,27 @@
+string connectionString = "Server = .\\SQLEXPRESS; Database = Personal_library; Integrated Security = True";
+        SqlConnection conn = new SqlConnection(connectionString);
+
+        conn.Open();
+
+        string b_id = bookid_txb.Text;
+        string b_name = bookname_txb.Text;
+        string a_name = authorname_txb.Text;
+        string br_price = borrowprice_txb.Text;
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "UPDATE book_info SET book_id='"+bookname_txb.Text+ "', book_name= '"+authorname_txb.Text+ "', author_name ='"+borrowprice_txb.Text+"' , borrow_price='" + newprice_txb.Text + "' WHERE book_id = '" + bookid_txb.Text + "'  "; //OLD VALUE IN BOOKID_TXB
+      
+        cmd.Connection = conn;
+
+        cmd.ExecuteNonQuery();
+
+
+        Response.Write("Update Completed!");
+
+        bookid_txb.Text = "";
+        bookname_txb.Text = "";
+        authorname_txb.Text = "";
+        borrowprice_txb.Text = "";
+        newprice_txb.Text = "";
+
+        conn.Close();
