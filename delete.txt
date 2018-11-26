@@ -1,0 +1,24 @@
+ string connectionString = "Server = .\\SQLEXPRESS; Database = Personal_library; Integrated Security = True";
+        SqlConnection conn = new SqlConnection(connectionString);
+
+        conn.Open();
+
+        string b_id = bookid_txb.Text;
+        string b_name = bookname_txb.Text;
+        string a_name = authorname_txb.Text;
+        string br_price = borrowprice_txb.Text;
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "DELETE FROM book_info WHERE book_id='" + bookid_txb.Text + "' ";
+        cmd.Connection = conn;
+
+        cmd.ExecuteNonQuery();
+
+        Response.Write("Delete Completed!");
+
+        bookid_txb.Text = "";
+        bookname_txb.Text = "";
+        authorname_txb.Text = "";
+        borrowprice_txb.Text = "";
+
+        conn.Close();

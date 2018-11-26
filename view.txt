@@ -1,0 +1,20 @@
+ string connectionString = "Server = .\\SQLEXPRESS; Database = Personal_library; Integrated Security = True";
+        SqlConnection conn = new SqlConnection(connectionString);
+
+        conn.Open();
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM book_info"; 
+        cmd.Connection = conn;
+
+        cmd.ExecuteNonQuery();
+     
+        DataTable dt = new DataTable();
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(dt);
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+        Response.Write("Veiw table...");
+
+
+        conn.Close();
